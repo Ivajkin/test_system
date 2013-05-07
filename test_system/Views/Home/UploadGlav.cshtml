@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Создание главы";
+}
+<p align="right">
+    Имя компьютера: @ViewBag.NAME<br />
+    Имя пользователя: @ViewBag.USER<br />
+    IP-адрес: @ViewBag.IP @Request.ServerVariables["REMOTE_ADDR"]
+</p>
+<h2>
+    Редактирование системы</h2>
+<p>
+    <br />
+    @Html.ActionLink("Редактирование глав", "EditGlav", "Home")<br />
+    <strong>Создать главу</strong> | @Html.ActionLink("Добавить вопрос", "VoprScript", "Home")</p>
+<fieldset>
+    <legend>Информация о загружаемой главе</legend>
+    <form action="@Url.Action("Upload")" method="post" enctype="multipart/form-data">
+    <p>
+        Загрузить материал главы (*.pdf):</p>
+    <p>
+        <input type="file" name="file" /></p>
+    <p>
+        <input type="submit" value="Загрузить материал главы" /></p>
+    </form>
+</fieldset>

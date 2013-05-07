@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Вопрос к главе " + ViewBag.Item2.name_glav;
+}
+<p align="right">
+    Имя компьютера: @ViewBag.NAME<br />
+    Имя пользователя: @ViewBag.USER<br />
+    IP-адрес: @ViewBag.IP @Request.ServerVariables["REMOTE_ADDR"]
+</p>
+<h2>
+    Редактирование системы</h2>
+<p>
+    <br />
+    @Html.ActionLink("Редактирование глав", "EditGlav", "Home")<br />
+    @Html.ActionLink("Создать главу", "UploadGlav", "Home") | @Html.ActionLink("Добавить вопрос", "VoprScript", "Home")</p>
+<h3>
+    Вопрос к главе "@ViewBag.Item2.name_glav"</h3>
+    <p style="font-weight:bold;">@ViewBag.Item.Vopr1</p>
+    @foreach (var item in ViewBag.Items)
+    {
+        <p>- @item.Otv1 (<span style ="font-weight:lighter;">@if(item.Bool == 1) 
+                         {<text>верный вариант</text>} 
+                         else {<text>не верный вариант</text>})</span></p> 
+    }
+    <p>
+    <a href="#" onclick="document.getElementById('wind').style.display='block'; return false;"
+        title="Отчистка статистики">Удалить</a></p>
+<div id="wind">
+    <fieldset class="drop" align="center">
+        <legend>Подтверждение удаления</legend>
+        <p>
+            Вы действительно хотите удалить данный вопрос?</p>
+        <table style="width: 300px; border: 0px;" align="center">
+            <tr>
+                <td align="center" width="150">
+                    @Html.ActionLink("Да", "DeleteVopros", new { id = ViewBag.Item.ID_vopr })
+                </td>
+                <td align="center">
+                    @Html.ActionLink("Нет", "Vopr", new { id = ViewBag.Item.ID_vopr })
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
+

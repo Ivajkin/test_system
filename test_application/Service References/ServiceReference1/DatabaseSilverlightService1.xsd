@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/test_system.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/test_system.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:49641/DatabaseSilverlightService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:49641/DatabaseSilverlightService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" />
+  <xs:complexType name="ArrayOfVopr">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Vopr" nillable="true" type="tns:Vopr" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVopr" nillable="true" type="tns:ArrayOfVopr" />
+  <xs:complexType name="Vopr">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q1:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ID_glav" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="ID_vopr" type="ser:guid" />
+          <xs:element minOccurs="0" name="Vopr1" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Vopr" nillable="true" type="tns:Vopr" />
+  <xs:complexType name="ArrayOfOtv">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Otv" nillable="true" type="tns:Otv" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOtv" nillable="true" type="tns:ArrayOfOtv" />
+  <xs:complexType name="Otv">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q2:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Bool" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="ID_otv" type="ser:guid" />
+          <xs:element minOccurs="0" name="ID_vopr" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="Otv1" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Otv" nillable="true" type="tns:Otv" />
+</xs:schema>

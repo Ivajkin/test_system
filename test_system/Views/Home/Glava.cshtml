@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Редактировать главы :" + ViewBag.Items.name_glav;
+}
+<p align="right">
+    Имя компьютера: @ViewBag.NAME<br />
+    Имя пользователя: @ViewBag.USER<br />
+    IP-адрес: @ViewBag.IP @Request.ServerVariables["REMOTE_ADDR"]
+</p>
+<h2>
+    Редактирование системы</h2>
+<p>
+    <br />
+    @Html.ActionLink("Редактирование глав", "EditGlav", "Home")<br />
+    @Html.ActionLink("Создать главу", "UploadGlav", "Home") | @Html.ActionLink("Добавить вопрос", "VoprScript", "Home")</p>
+<h3>
+    Глава "@ViewBag.Items.name_glav"</h3>
+<table width="90%">
+    <tr>
+        <iframe src="/Home/GlavaView/@ViewBag.Items.ID_glav" width="100%" height="600" align="left">
+            Ваш браузер не поддерживает плавающие фреймы! </iframe>
+        <td>
+        </td>
+    </tr>
+</table>
+<h3>
+    Вопросы к главе "@ViewBag.Items.name_glav"</h3>
+<table>
+    @if (ViewBag.COUNT > 0)
+    { <tr>
+        <th>
+            №
+        </th>
+        <th>
+            Вопрос
+        </th>
+    </tr>}
+    @if (ViewBag.COUNT == 0)
+    {<h3 style="color: #696969;">
+        Нет информации о вопросах к данной главе</h3>}
+    @{
+        int countElem = 1;
+        foreach (var item in ViewBag.Item)
+        {
+        <tr>
+            <td>
+                @countElem
+            </td>
+            <td>@Html.ActionLink((string)item.Vopr1, "Vopr", new { id = item.ID_vopr })
+            </td>
+            @{countElem = (countElem + 1);}
+        </tr> 
+        }
+    }
+</table>
+<p>
+    <a href="#" onclick="document.getElementById('wind').style.display='block'; return false;"
+        title="Отчистка статистики">Удалить</a></p>
+<div id="wind">
+    <fieldset class="drop" align="center">
+        <legend>Подтверждение удаления</legend>
+        <p>
+            Вы действительно хотите удалить данную главу? Её удаление повлечет за собой удаление
+            вопросов, привязанных к этой главе</p>
+        <table style="width: 300px; border: 0px;" align="center">
+            <tr>
+                <td align="center" width="150">
+                    @Html.ActionLink("Да", "DeleteGlava", new { id = ViewBag.Items.ID_glav })
+                </td>
+                <td align="center">
+                    @Html.ActionLink("Нет", "Glava", new { id = ViewBag.Items.ID_glav })
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>

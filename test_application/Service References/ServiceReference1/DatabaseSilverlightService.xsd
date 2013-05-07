@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/test_system" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/test_system" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:49641/DatabaseSilverlightService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="DatabaseSilverlightService.TestData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="glavaID" type="ser:guid" />
+      <xs:element minOccurs="0" name="glavaName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="isControlMode" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatabaseSilverlightService.TestData" nillable="true" type="tns:DatabaseSilverlightService.TestData" />
+  <xs:complexType name="DatabaseSilverlightService.DNSInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Computer" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IP_address" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatabaseSilverlightService.DNSInfo" nillable="true" type="tns:DatabaseSilverlightService.DNSInfo" />
+</xs:schema>

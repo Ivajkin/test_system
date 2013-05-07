@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="test_system.DatabaseSilverlightService" CodeBehind="DatabaseSilverlightService.svc.cs" %>

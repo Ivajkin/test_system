@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="test_application.ControlResult"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk">
+    
+    <Grid x:Name="LayoutRoot" Background="White">
+        <sdk:Label Height="42" HorizontalAlignment="Left" Margin="24,56,0,0" Name="label1" VerticalAlignment="Top" Width="342" FontSize="24" Content="Результаты тестирования:" />
+        <sdk:Label Height="21" HorizontalAlignment="Left" Margin="24,104,0,0" Name="result_label" VerticalAlignment="Top" Width="314" Content="Вы ответили верно на {0} вопроса из {1}" />
+        <Button Content="Завершить тест" Height="45" HorizontalAlignment="Left" Margin="271,243,0,0" Name="close_button" VerticalAlignment="Top" Width="117" Click="close_button_Click" />
+        <sdk:Label Content="Вы набрали {0} баллов" Height="21" HorizontalAlignment="Left" Margin="24,131,0,0" Name="result_label_2" VerticalAlignment="Top" Width="314" />
+    </Grid>
+</UserControl>

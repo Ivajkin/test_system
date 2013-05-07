@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "Просмотр статистики";
+}
+<p align="right">
+    Имя компьютера: @ViewBag.NAME<br />
+    Имя пользователя: @ViewBag.USER<br />
+    IP-адрес: @ViewBag.IP @Request.ServerVariables["REMOTE_ADDR"]
+</p>
+<h2>
+    Статистика</h2>
+<table>
+    @if (ViewBag.COUNT > 0)
+    { <tr>
+    <th>
+        Дата
+    </th>
+    <th>
+        Время
+    </th>
+    <th>
+        Компьютер
+    </th>
+    <th>
+        IP-адрес
+    </th>
+    <th>
+        Задания
+    </th>
+    <th>
+        Баллы
+    </th>
+    <th>
+        Глава
+    </th>
+        </tr>}
+    @if (ViewBag.COUNT == 0)
+    {<h3 style="color: #696969;">
+        Нет информации о статистике</h3>}
+    @foreach (var item in ViewBag.Items)
+    {
+        <tr>
+            <td>@item.Data
+            </td>
+            <td>@item.Time
+            </td>
+            <td>@item.Computer
+            </td>
+            <td>@item.IP_address
+            </td>
+            <td>
+                Выполнено @item.Answerd из @item.Tasks
+            </td>
+            <td>@item.Balls
+            </td>
+            <td>@item.Glava
+            </td>
+        </tr> 
+    }
+</table>
+@{
+    <script src="@Url.Content("~/Scripts/jquery-1.5.1.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.dropdown.js")" type="text/javascript"></script>
+    if (User.Identity.Name == "admin" && (ViewBag.COUNT > 0))
+    {
+    <p>
+        <a href="#" onclick="document.getElementById('wind').style.display='block'; return false;"
+            title="Отчистка статистики">Отчистка статистики</a></p>
+    <div id="wind">
+        <fieldset class="drop" align="center">
+            <legend>Подтверждение отчистки статитстики</legend>
+            <p>
+                Вы действительно хотите отчистить статистику?</p>
+            <table style="width: 300px; border: 0px;" align="center">
+                <tr>
+                    <td align="center" width="150">
+                        @Html.ActionLink("Да", "CleanStatistic", "Home")
+                    </td>
+                    <td align="center">
+                        @Html.ActionLink("Нет", "Statistic", "Home")
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
+    }
+}

@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Добавление вопроса - Ошибка";
+}
+<p align="right">
+    Имя компьютера: @ViewBag.NAME<br />
+    Имя пользователя: @ViewBag.USER<br />
+    IP-адрес: @ViewBag.IP @Request.ServerVariables["REMOTE_ADDR"]
+</p>
+<h2>
+    Редактирование системы</h2>
+<p>
+    <br />
+    @Html.ActionLink("Редактирование глав", "EditGlav", "Home")<br />
+    @Html.ActionLink("Создать главу", "UploadGlav", "Home") | @Html.ActionLink("Добавить вопрос", "VoprScript", "Home")</p>
+<h3>
+<p style="color:Red; font-weight:bold; font-size:1.25em;">Возникла ошибка при обработке скрипта. Необходимо проверить корректность запроса. Перед очередным выполнением внимательно прочитайте инструкцию и проверьте соответствие с шаблоном.</p>

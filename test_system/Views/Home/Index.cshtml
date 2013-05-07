@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "О системе";
+}
+
+<p align="right">
+    Имя компьютера: @ViewBag.NAME<br />
+    Имя пользователя: @ViewBag.USER<br />
+    IP-адрес: @ViewBag.IP @Request.ServerVariables["REMOTE_ADDR"]
+</p>
+<h2>Добро пожаловать в систему тестирования!</h2>

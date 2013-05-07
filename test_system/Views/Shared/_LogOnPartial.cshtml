@@ -1,0 +1,7 @@
+﻿@if(Request.IsAuthenticated) {
+    <text>Добро пожаловать, <strong>Администратор системы</strong>!
+    [ @Html.ActionLink("Сменить пароль", "ChangePassword", "Account") | @Html.ActionLink("Выход из системы", "LogOff", "Account") ]</text>
+}
+else {
+    @:[ @Html.ActionLink("Вход для администратора системы", "LogOn", "Account") ]
+}

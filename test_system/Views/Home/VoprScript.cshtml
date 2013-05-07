@@ -1,0 +1,64 @@
+﻿@model test_system.Models.TempScript
+
+@{
+    ViewBag.Title = "Добавление вопроса";
+}
+<p align="right">
+    Имя компьютера: @ViewBag.NAME<br />
+    Имя пользователя: @ViewBag.USER<br />
+    IP-адрес: @ViewBag.IP @Request.ServerVariables["REMOTE_ADDR"]
+</p>
+<h2>
+    Редактирование системы</h2>
+<p>
+    <br />
+    @Html.ActionLink("Редактирование глав", "EditGlav", "Home")<br />
+    @Html.ActionLink("Создать главу", "UploadGlav", "Home") | <strong>Добавить вопрос</strong></p>
+<h3>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@if (ViewBag.COUNT > 0)
+{
+    <table style="border-width:4px; border-color:Blue; background-color:Aqua; font-size:.95em; font-weight:bold; color:Black;">
+        <tr><td>
+            <p style="font-size:1.25em; color:Red;">Внимание</p>
+            <p>Перед добавлением вопроса рекомендуется прочитать следующую инструкцию.<br />
+1.	Вопрос добавляется по следующему шаблону:</p>
+<p style="font-weight:normal; font-family:Courier New; padding-left:20px;">Вопрос к главе {Вариант ответа  1[+]}{Вариант ответа 2[-]}{Вариант ответа 3[-]}</p>
+<p>2.	Вариантов ответа может быть сколько угодно (минимум – 2).<br />
+3.	В квадратных скобках указывается, верный данный вариант или нет.<br />
+4.	Символы “{“, “}”, “[“, “]” “/” являются служебными. Если вам необходимо использовать эти символы в вопросе, то перед ним необходимо поставить символ “/” (“//”, “/{“ и так далее).
+</p>
+        </td></tr>
+    </table>
+using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend style="font-weight:bold;color: #696969;font-size: .95em;font-family: "Trebuchet MS" , Verdana, Helvetica, Sans-Serif;">Добавление вопроса</legend>
+
+        <p style="font-weight:normal;color: #696969;font-size: .85em;font-family: "Trebuchet MS" , Verdana, Helvetica, Sans-Serif;">
+            Глава:<br />        
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.ID_glav, (List<SelectListItem>)ViewBag.Items)
+            @Html.ValidationMessageFor(model => model.ID_glav)
+        </div></p>
+
+        <p style="font-weight:normal;color: #696969;font-size: .85em;font-family: "Trebuchet MS" , Verdana, Helvetica, Sans-Serif;">
+            Скрипт:<br />        
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.SCRIPT)
+            @Html.ValidationMessageFor(model => model.SCRIPT)
+        </div></p>
+
+        <p>
+            <input type="submit" value="Добавить вопрос" style="font-size: 0.95em; font-weight:normal;"/>
+        </p>
+    </fieldset>
+}
+}
+else
+{
+    <h3>Невозможно добавить вопрос, пока не будет добавлена хотя бы одна глава</h3> 
+}

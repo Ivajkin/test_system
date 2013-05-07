@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "Контрольное тестирование";
+}
+<p align="right">
+    Имя компьютера: @ViewBag.NAME<br />
+    Имя пользователя: @ViewBag.USER<br />
+    IP-адрес: @ViewBag.IP @Request.ServerVariables["REMOTE_ADDR"]
+</p>
+<h2>
+    Контрольное тестирование</h2>
+<table width="90%">
+    @if (ViewBag.COUNT > 0)
+    { <tr>
+        <th>
+            Оглаление
+        </th>
+        <th>
+            Глава "@ViewBag.Item.name_glav"
+        </th>
+    </tr>}
+    @if (ViewBag.COUNT == 0)
+    {<h3 style="color: #696969;">
+        Нет информации о главах</h3>}
+    @if (ViewBag.COUNT > 0)
+        {<tr>
+        <td rowspan="2" valign="top" style="max-width: 50px;">
+            <table style="vertical-align: top;" width=100%>
+                @{
+            test_system.DatabaseSilverlightService.testData.glavaID = ViewBag.Item.ID_glav;
+            test_system.DatabaseSilverlightService.testData.glavaName = ViewBag.Item.name_glav;
+            test_system.DatabaseSilverlightService.testData.isControlMode = true;
+                    int countElem = 1;
+                    foreach (var item in ViewBag.Items)
+                    {
+                    <tr>
+                        <td>
+                            @countElem
+                        </td>
+                        <td>
+                            @if (item.ID_glav == ViewBag.Item.ID_glav)
+                            {
+                                @item.name_glav
+                            }
+                            else
+                            {
+                                @Html.ActionLink((string)item.name_glav, "ConTest", new { id = item.ID_glav })
+                            }
+                        </td>
+                        @{countElem = (countElem + 1);}
+                    </tr> 
+                    }
+                }
+            </table>
+        </td>
+        <td>
+            <iframe src="/Home/GlavaView/@ViewBag.Item.ID_glav" width="100%" style="min-height:600px; max-height:100px;" height="100%" align="left">
+                Ваш браузер не поддерживает плавающие фреймы! </iframe>
+        </td>
+    </tr>}
+    @if (ViewBag.COUNT > 0)
+            {<tr>
+        <td height="30">
+            <p align="right">
+                <a id="start-test" href="#">Начать тестирование</a>
+            </p>
+        </td>
+    </tr>}
+</table>
+
+
+<form id="silverlight" runat="server" style="height:100%">
+    <div id="silverlightControlHost">
+        <object data="data:application/x-silverlight-2," type="application/x-silverlight-2" width="100%" height="100%">
+		  <!--<param name="source" value="../../ClientBin/test_application.xap"/>-->
+          <param name="source" value="@String.Format("../../ClientBin/test_application.xap?ver={0}", (new System.IO.FileInfo("../../ClientBin/test_application.xap")).CreationTime.Ticks.ToString())"/>
+		  <param name="onError" value="onSilverlightError" />
+		  <param name="background" value="white" />
+		  <param name="minRuntimeVersion" value="4.0.50826.0" />
+		  <param name="autoUpgrade" value="true" />
+		  <a href="http://go.microsoft.com/fwlink/?LinkID=149156&v=4.0.50826.0" style="text-decoration:none">
+ 			  <img src="http://go.microsoft.com/fwlink/?LinkId=161376" alt="Get Microsoft Silverlight" style="border-style:none"/>
+		  </a>
+	    </object><iframe id="_sl_historyFrame" style="visibility:hidden;height:0px;width:0px;border:0px"></iframe></div>
+    </form>
+
+    <script type="text/javascript">
+        $("#silverlight").hide();
+        $("#start-test").click(function () {
+            $("#silverlight").show();
+            $("table").hide();
+        });
+        
+    </script>

@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Редактировать главы";
+}
+<p align="right">
+    Имя компьютера: @ViewBag.NAME<br />
+    Имя пользователя: @ViewBag.USER<br />
+    IP-адрес: @ViewBag.IP @Request.ServerVariables["REMOTE_ADDR"]
+</p>
+<h2>
+    Редактирование системы</h2>
+<p>
+    <br />
+    <strong>Редактирование глав</strong><br />
+    @Html.ActionLink("Создать главу", "UploadGlav", "Home") | @Html.ActionLink("Добавить вопрос", "VoprScript", "Home")</p>
+<table>
+    @if (ViewBag.COUNT > 0)
+    { <tr>
+        <th>
+            №
+        </th>
+        <th>
+            Название главы
+        </th>
+    </tr>}
+    @if (ViewBag.COUNT == 0)
+    {<h3 style="color: #696969;">
+        Нет информации о главах</h3>}
+    @{
+        int countElem = 1;
+        foreach (var item in ViewBag.Items)
+        {
+        <tr>
+            <td>
+            @countElem
+            </td>
+            <td>@Html.ActionLink((string)item.name_glav, "Glava", new { id = item.ID_glav })
+            </td>
+            @{countElem = (countElem + 1);}
+        </tr> 
+    }
+    }
+</table>

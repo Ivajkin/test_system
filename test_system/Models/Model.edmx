@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DatabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="DatabaseModelStoreContainer">
+          <EntitySet Name="Glava" EntityType="DatabaseModel.Store.Glava" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Otv" EntityType="DatabaseModel.Store.Otv" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Stat" EntityType="DatabaseModel.Store.Stat" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Vopr" EntityType="DatabaseModel.Store.Vopr" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Glava">
+          <Key>
+            <PropertyRef Name="ID_glav" />
+          </Key>
+          <Property Name="ID_glav" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="name_glav" Type="nvarchar(max)" />
+          <Property Name="name_file" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Otv">
+          <Key>
+            <PropertyRef Name="ID_otv" />
+          </Key>
+          <Property Name="ID_vopr" Type="uniqueidentifier" />
+          <Property Name="ID_otv" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Otv" Type="nvarchar(max)" />
+          <Property Name="Bool" Type="int" />
+        </EntityType>
+        <EntityType Name="Stat">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Data" Type="nvarchar" MaxLength="20" />
+          <Property Name="Time" Type="nvarchar" MaxLength="10" />
+          <Property Name="Computer" Type="nvarchar" MaxLength="50" />
+          <Property Name="IP_address" Type="nvarchar" MaxLength="20" />
+          <Property Name="Balls" Type="int" />
+          <Property Name="Tasks" Type="int" />
+          <Property Name="Answerd" Type="int" />
+          <Property Name="Glava" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Vopr">
+          <Key>
+            <PropertyRef Name="ID_vopr" />
+          </Key>
+          <Property Name="ID_vopr" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ID_glav" Type="uniqueidentifier" />
+          <Property Name="Vopr" Type="nvarchar(max)" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DatabaseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Glava" EntityType="DatabaseModel.Glava" />
+          <EntitySet Name="Otv" EntityType="DatabaseModel.Otv" />
+          <EntitySet Name="Stat" EntityType="DatabaseModel.Stat" />
+          <EntitySet Name="Vopr" EntityType="DatabaseModel.Vopr" />
+        </EntityContainer>
+        <EntityType Name="Glava">
+          <Key>
+            <PropertyRef Name="ID_glav" />
+          </Key>
+          <Property Name="ID_glav" Type="Guid" Nullable="false" />
+          <Property Name="name_glav" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="name_file" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Otv">
+          <Key>
+            <PropertyRef Name="ID_otv" />
+          </Key>
+          <Property Name="ID_vopr" Type="Guid" />
+          <Property Name="ID_otv" Type="Guid" Nullable="false" />
+          <Property Name="Otv1" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Bool" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Stat">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Data" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Time" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Computer" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="IP_address" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Balls" Type="Int32" />
+          <Property Name="Tasks" Type="Int32" />
+          <Property Name="Answerd" Type="Int32" />
+          <Property Name="Glava" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Vopr">
+          <Key>
+            <PropertyRef Name="ID_vopr" />
+          </Key>
+          <Property Name="ID_vopr" Type="Guid" Nullable="false" />
+          <Property Name="ID_glav" Type="Guid" />
+          <Property Name="Vopr1" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseEntities">
+          <EntitySetMapping Name="Glava"><EntityTypeMapping TypeName="DatabaseModel.Glava"><MappingFragment StoreEntitySet="Glava">
+            <ScalarProperty Name="ID_glav" ColumnName="ID_glav" />
+            <ScalarProperty Name="name_glav" ColumnName="name_glav" />
+            <ScalarProperty Name="name_file" ColumnName="name_file" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Otv"><EntityTypeMapping TypeName="DatabaseModel.Otv"><MappingFragment StoreEntitySet="Otv">
+            <ScalarProperty Name="ID_vopr" ColumnName="ID_vopr" />
+            <ScalarProperty Name="ID_otv" ColumnName="ID_otv" />
+            <ScalarProperty Name="Otv1" ColumnName="Otv" />
+            <ScalarProperty Name="Bool" ColumnName="Bool" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Stat"><EntityTypeMapping TypeName="DatabaseModel.Stat"><MappingFragment StoreEntitySet="Stat">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Data" ColumnName="Data" />
+            <ScalarProperty Name="Time" ColumnName="Time" />
+            <ScalarProperty Name="Computer" ColumnName="Computer" />
+            <ScalarProperty Name="IP_address" ColumnName="IP_address" />
+            <ScalarProperty Name="Balls" ColumnName="Balls" />
+            <ScalarProperty Name="Tasks" ColumnName="Tasks" />
+            <ScalarProperty Name="Answerd" ColumnName="Answerd" />
+            <ScalarProperty Name="Glava" ColumnName="Glava" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Vopr"><EntityTypeMapping TypeName="DatabaseModel.Vopr"><MappingFragment StoreEntitySet="Vopr">
+            <ScalarProperty Name="ID_vopr" ColumnName="ID_vopr" />
+            <ScalarProperty Name="ID_glav" ColumnName="ID_glav" />
+            <ScalarProperty Name="Vopr1" ColumnName="Vopr" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model">
+        <EntityTypeShape EntityType="DatabaseModel.Glava" Width="1.5" PointX="0.75" PointY="0.75" Height="1.59568359375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Otv" Width="1.5" PointX="2.75" PointY="0.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Stat" Width="1.5" PointX="6.625" PointY="0.75" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Vopr" Width="1.5" PointX="4.625" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

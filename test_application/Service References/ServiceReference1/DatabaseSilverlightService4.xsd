@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:49641/DatabaseSilverlightService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:49641/DatabaseSilverlightService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/test_system.Models" />
+  <xs:import schemaLocation="http://localhost:49641/DatabaseSilverlightService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/test_system" />
+  <xs:element name="GetVoprForGlav">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="glavID" type="q1:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVoprForGlavResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/test_system.Models" minOccurs="0" name="GetVoprForGlavResult" nillable="true" type="q2:ArrayOfVopr" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTestData">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTestDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/test_system" minOccurs="0" name="GetTestDataResult" nillable="true" type="q3:DatabaseSilverlightService.TestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOtvet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="id" type="q4:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOtvetResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/test_system.Models" minOccurs="0" name="GetOtvetResult" nillable="true" type="q5:ArrayOfOtv" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDNSInfo">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDNSInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/test_system" minOccurs="0" name="GetDNSInfoResult" nillable="true" type="q6:DatabaseSilverlightService.DNSInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddStatistic">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ID" type="q7:guid" />
+        <xs:element minOccurs="0" name="Date" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Time" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Computer" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="IP_address" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Balls" type="xs:int" />
+        <xs:element minOccurs="0" name="Tasks" type="xs:int" />
+        <xs:element minOccurs="0" name="Answers" type="xs:int" />
+        <xs:element minOccurs="0" name="Glava" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddStatisticResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
